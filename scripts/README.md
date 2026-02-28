@@ -630,7 +630,7 @@ json_files = {
 Make sure you're running the scripts from the project root:
 
 ```bash
-cd C:\Users\rafae\Documents\PROJECTS\TradeBot
+cd .
 python scripts/validate_schemas.py
 ```
 

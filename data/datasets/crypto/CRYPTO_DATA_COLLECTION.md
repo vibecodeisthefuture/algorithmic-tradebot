@@ -60,7 +60,7 @@ GET https://api.exchange.coinbase.com/products/{product_id}/candles
 ```
 
 #### Implementation
-See [`coinbase_collector.py`](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/Backtest/datasets/crypto/coinbase_collector.py) for a full working implementation.
+See [`coinbase_collector.py`](data/datasets/crypto/coinbase_collector.py) for a full working implementation.
 
 **Example collection results:**
 - BTC: ~14,000 rows (9.6 years of 6h data)
@@ -136,7 +136,7 @@ POST https://api.hyperliquid.xyz/info
 ```
 
 #### Implementation
-See [`test_hyperliquid.py`](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/Backtest/datasets/crypto/test_hyperliquid.py) for working example.
+See [`test_hyperliquid.py`](data/datasets/crypto/test_hyperliquid.py) for working example.
 
 ---
 
@@ -215,7 +215,7 @@ GET https://api.coingecko.com/api/v3/coins/{coin_id}/market_chart
 ```
 
 #### Implementation
-See [`test_coingecko.py`](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/Backtest/datasets/crypto/test_coingecko.py) for working example.
+See [`test_coingecko.py`](data/datasets/crypto/test_coingecko.py) for working example.
 
 #### Best Practices
 - **Daily data only** for long-term historical analysis
@@ -390,7 +390,7 @@ collector.save_data(data, 'BTC-6h-500wks-data.csv')
 - Total: 55,200 validated rows
 - File size: ~4 MB total
 
-Full implementation: [`coinbase_collector.py`](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/Backtest/datasets/crypto/coinbase_collector.py)
+Full implementation: [`coinbase_collector.py`](data/datasets/crypto/coinbase_collector.py)
 
 ### Hyperliquid Example
 
@@ -423,7 +423,7 @@ for candle in candles:
     volume = float(candle['v'])
 ```
 
-Full test: [`test_hyperliquid.py`](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/Backtest/datasets/crypto/test_hyperliquid.py)
+Full test: [`test_hyperliquid.py`](data/datasets/crypto/test_hyperliquid.py)
 
 ### CoinGecko Example
 
@@ -445,7 +445,7 @@ print(f"BTC: ${prices['bitcoin']['usd']:,.2f}")
 print(f"ETH: ${prices['ethereum']['usd']:,.2f}")
 ```
 
-Full test: [`test_coingecko.py`](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/Backtest/datasets/crypto/test_coingecko.py)
+Full test: [`test_coingecko.py`](data/datasets/crypto/test_coingecko.py)
 
 ---
 
@@ -499,9 +499,9 @@ Full test: [`test_coingecko.py`](file:///C:/Users/rafae/Documents/PROJECTS/Trade
 
 ## Next Steps
 
-1. **Test API Access**: Run the test scripts in [`crypto/`](file:///c:/Users/rafae/Documents/PROJECTS/TradeBot/Backtest/datasets/crypto)
+1. **Test API Access**: Run the test scripts in [`crypto/`](data/datasets/crypto)
 2. **Choose Your API**: Based on your needs (see comparison matrix)
-3. **Implement Collector**: Use or adapt the [`coinbase_collector.py`](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/Backtest/datasets/crypto/coinbase_collector.py)
+3. **Implement Collector**: Use or adapt the [`coinbase_collector.py`](data/datasets/crypto/coinbase_collector.py)
 4. **Validate Data**: Always validate OHLCV relationships and check for gaps
 5. **Start Backtesting**: Load data into your backtesting framework
 
@@ -510,13 +510,13 @@ Full test: [`test_coingecko.py`](file:///C:/Users/rafae/Documents/PROJECTS/Trade
 ## Additional Resources
 
 **Test Scripts:**
-- [test_hyperliquid.py](file:///c:/Users/rafae/Documents/PROJECTS/TradeBot/Backtest/datasets/crypto/test_hyperliquid.py) - Hyperliquid API verification
-- [test_coingecko.py](file:///c:/Users/rafae/Documents/PROJECTS/TradeBot/Backtest/datasets/crypto/test_coingecko.py) - CoinGecko API verification
+- [test_hyperliquid.py](data/datasets/crypto/test_hyperliquid.py) - Hyperliquid API verification
+- [test_coingecko.py](data/datasets/crypto/test_coingecko.py) - CoinGecko API verification
 
 **Implementation:**
-- [coinbase_collector.py](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/Backtest/datasets/crypto/coinbase_collector.py) - Full Coinbase collector class
-- [collect_crypto_coinbase.py](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/Backtest/datasets/crypto/collect_crypto_coinbase.py) - Collection script for 6 cryptos
-- [verify_crypto_data.py](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/Backtest/datasets/crypto/verify_crypto_data.py) - Data validation script
+- [coinbase_collector.py](data/datasets/crypto/coinbase_collector.py) - Full Coinbase collector class
+- [collect_crypto_coinbase.py](data/datasets/crypto/collect_crypto_coinbase.py) - Collection script for 6 cryptos
+- [verify_crypto_data.py](data/datasets/crypto/verify_crypto_data.py) - Data validation script
 
 **Documentation:**
 - [Hyperliquid API Docs](https://hyperliquid.gitbook.io/hyperliquid-docs/)

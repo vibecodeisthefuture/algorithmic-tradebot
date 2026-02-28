@@ -497,7 +497,7 @@ The project uses a **dynamic four-tier risk policy** (HIGH / MODERATE-AGGRESSIVE
 > [!NOTE]
 > The risk policy was designed for the broader portfolio (equities, options). Crypto is inherently **2-3x more volatile** than equities — all crypto trades should be treated as **one risk level higher** than equivalent equity trades. The leverage limits and thresholds below reflect crypto-adjusted values.
 
-**For complete portfolio-wide policy details, reference**: [RISK_POLICY_FRAMEWORK.md](file:///c:/Users/rafae/Documents/PROJECTS/TradeBot/agents/portfolio_tracker/RISK_POLICY_FRAMEWORK.md)
+**For complete portfolio-wide policy details, reference**: [RISK_POLICY_FRAMEWORK.md](agents/portfolio_tracker/RISK_POLICY_FRAMEWORK.md)
 
 ---
 

@@ -240,10 +240,10 @@ These documents contain critical guidance the agent must follow:
 
 | Document | Purpose |
 |----------|---------|
-| [OVEROPTIMIZE_WARNING.md](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/agents/backtest/OVEROPTIMIZE_WARNING.md) | Anti-overfitting protocols |
-| [BLACKSWANS.md](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/agents/backtest/BLACKSWANS.md) | Black swan stress test requirements |
-| [test_template.py](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/agents/backtest/test_template.py) | Standard backtest template |
-| [TEST_INDEX.md](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/agents/backtest/TEST_INDEX.md) | Index of completed tests |
+| [OVEROPTIMIZE_WARNING.md](agents/backtest/OVEROPTIMIZE_WARNING.md) | Anti-overfitting protocols |
+| [BLACKSWANS.md](agents/backtest/BLACKSWANS.md) | Black swan stress test requirements |
+| [test_template.py](agents/backtest/test_template.py) | Standard backtest template |
+| [TEST_INDEX.md](agents/backtest/TEST_INDEX.md) | Index of completed tests |
 
 ---
 

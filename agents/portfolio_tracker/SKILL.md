@@ -440,7 +440,7 @@ daily_policy_review()
 
 ```powershell
 # Quick VIX check and policy adjustment
-cd "c:\Users\rafae\Documents\PROJECTS\TradeBot\3. Implement\PortfolioTracker"
+cd .
 py -c "from risk_override import RiskPolicyValidator, RiskProfile; v=RiskPolicyValidator(); vix=v.get_vix_level(); print(f'VIX: {vix:.2f}'); v.switch_policy(RiskProfile.LOW, f'VIX spike: {vix:.2f}') if vix > 30 else print('Normal')"
 ```
 
@@ -582,8 +582,8 @@ When using the Risk Policy Control skill:
 
 ## Additional Resources
 
-- [RISK_TOLERANCE_HIGH.md](file:///c:/Users/rafae/Documents/PROJECTS/TradeBot/3.%20Implement/PortfolioTracker/RISK_TOLERANCE_HIGH.md) - Aggressive growth policy
-- [RISK_TOLERANCE_MODERATE.md](file:///c:/Users/rafae/Documents/PROJECTS/TradeBot/3.%20Implement/PortfolioTracker/RISK%20TOLERANCE_MODERATE.md) - Balanced policy
-- [RISK_TOLERANCE_LOW.md](file:///c:/Users/rafae/Documents/PROJECTS/TradeBot/3.%20Implement/PortfolioTracker/RISK_TOLERANCE_LOW.md) - Conservative policy
-- [RISK_TOLERANCE_COMPARISON.md](file:///c:/Users/rafae/Documents/PROJECTS/TradeBot/3.%20Implement/PortfolioTracker/RISK_TOLERANCE_COMPARISON.md) - Side-by-side comparison
+- [RISK_TOLERANCE_HIGH.md](agents/portfolio_tracker/RISK_TOLERANCE_HIGH.md) - Aggressive growth policy
+- [RISK_TOLERANCE_MODERATE.md](agents/portfolio_tracker/RISK%20TOLERANCE_MODERATE.md) - Balanced policy
+- [RISK_TOLERANCE_LOW.md](agents/portfolio_tracker/RISK_TOLERANCE_LOW.md) - Conservative policy
+- [RISK_TOLERANCE_COMPARISON.md](agents/portfolio_tracker/RISK_TOLERANCE_COMPARISON.md) - Side-by-side comparison
 - Local Scripts: `ai_policy_control_examples.py`, `risk_override.py`

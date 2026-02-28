@@ -455,7 +455,7 @@ If unconfirmed after 30 min: Log as unverified rumor, continue monitoring
 
 **Location**: `data/tradebot.db` → `market_news` table (ORM: `agents.common.models.MarketNews`)
 
-**Schema**: See [DATA_SCHEMAS.md](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/docs/DATA_SCHEMAS.md)
+**Schema**: See [DATA_SCHEMAS.md](docs/DATA_SCHEMAS.md)
 
 **Write Triggers**:
 - Every Critical/High severity event

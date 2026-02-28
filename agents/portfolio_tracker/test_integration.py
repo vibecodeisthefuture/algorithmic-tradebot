@@ -407,7 +407,7 @@ try:
             print(f"    {i}. [{action['priority'].upper()}] {action['action']}")
 
     # Save report
-    report_path = "c:/Users/rafae/Documents/PROJECTS/TradeBot/3. Implement/PortfolioTracker/test_health_report.json"
+    report_path = "agents/portfolio_tracker/test_health_report.json"
     orchestrator.save_health_report(report, report_path)
     print(f"\n  [SAVE] Full report saved to: test_health_report.json")
 

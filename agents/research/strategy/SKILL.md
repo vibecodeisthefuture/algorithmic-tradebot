@@ -273,7 +273,7 @@ All trade ideas use this JSON structure:
 
 ### Options Strategies
 
-**Reference**: [OPTIONS_STRATEGIES.md](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/agents/research/strategy/OPTIONS_STRATEGIES.md)
+**Reference**: [OPTIONS_STRATEGIES.md](agents/research/strategy/OPTIONS_STRATEGIES.md)
 
 **Research Focus**: Volatility premium, theta decay, defined-risk structures
 
@@ -284,7 +284,7 @@ All trade ideas use this JSON structure:
 
 ### Crypto Strategies
 
-**Reference**: [CRYPTO_INVESTING_GUIDE.md](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/agents/research/strategy/CRYPTO_INVESTING_GUIDE.md)
+**Reference**: [CRYPTO_INVESTING_GUIDE.md](agents/research/strategy/CRYPTO_INVESTING_GUIDE.md)
 
 **Research Focus**: Liquidation cascades, whale tracking, funding rate arbitrage
 
@@ -377,7 +377,7 @@ Automatically flag ideas with:
 ### strategies table (in data/tradebot.db)
 **Location**: `data/tradebot.db` → `strategies` table (ORM: `agents.common.models.Strategy`)
 
-**Schema**: See [DATA_SCHEMAS.md](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/docs/DATA_SCHEMAS.md)
+**Schema**: See [DATA_SCHEMAS.md](docs/DATA_SCHEMAS.md)
 
 **Write Triggers**:
 - New hypothesis passes pre-validation

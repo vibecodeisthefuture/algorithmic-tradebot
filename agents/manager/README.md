@@ -53,19 +53,19 @@ graph TD
 ### Research Phase Agents
 
 #### 1. Research Agent
-- **Location**: [`agents/research/strategy/`](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/agents/research/strategy/)
-- **SKILL**: [SKILL.md](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/agents/research/strategy/SKILL.md)
+- **Location**: [`agents/research/strategy/`](agents/research/strategy/)
+- **SKILL**: [SKILL.md](agents/research/strategy/SKILL.md)
 - **Purpose**: Systematic trade strategy research and hypothesis generation
 - **Outputs**: Trade ideas inserted into `strategies` table in `data/tradebot.db` with `NEW` status
 - **Resources**: Google Scholar, academic papers, trading books, podcasts (Chat With Traders), YouTube (Moon Dev)
 - **Key Documents**: 
-  - [README.md](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/agents/research/strategy/README.md) - Research methodology
-  - [OPTIONS_STRATEGIES.md](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/agents/research/strategy/OPTIONS_STRATEGIES.md) - Comprehensive options strategy guide
+  - [README.md](agents/research/strategy/README.md) - Research methodology
+  - [OPTIONS_STRATEGIES.md](agents/research/strategy/OPTIONS_STRATEGIES.md) - Comprehensive options strategy guide
   - `data/tradebot.db` → `strategies` table — Active strategy ideas
 
 #### 2. Market News Agent
-- **Location**: [`agents/research/market_news/`](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/agents/research/market_news/)
-- **SKILL**: [SKILL.md](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/agents/research/market_news/SKILL.md)
+- **Location**: [`agents/research/market_news/`](agents/research/market_news/)
+- **SKILL**: [SKILL.md](agents/research/market_news/SKILL.md)
 - **Purpose**: Monitor global market news and assess trade strategy adjustments
 - **Focus**: USD-centric impact analysis, data-backed news only (no speculation)
 - **Sources**: Bloomberg, Financial Times, WSJ, Reuters, CNBC, MarketWatch
@@ -77,7 +77,7 @@ graph TD
 - **Integration**: News assessments → Research agent → `strategies` table → Backtest agent
 
 #### 3. Predictions Agent *(Not Yet Developed)*
-- **Location**: [`agents/research/predictions/`](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/agents/research/predictions/)
+- **Location**: [`agents/research/predictions/`](agents/research/predictions/)
 - **Planned Purpose**: Strategy suggestions based on machine learning market prediction models
 - **Future Capabilities**: 
   - Predictive analytics on market movements
@@ -85,7 +85,7 @@ graph TD
   - Model-based trade recommendations
 
 #### 4. Crypto Liquidation Agent *(Not Yet Developed)*
-- **Location**: [`agents/research/crypto_liquidation/`](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/agents/research/crypto_liquidation/)
+- **Location**: [`agents/research/crypto_liquidation/`](agents/research/crypto_liquidation/)
 - **Planned Purpose**: Track crypto liquidation rates and whale account activity
 - **Future Capabilities**:
   - Real-time liquidation monitoring
@@ -98,13 +98,13 @@ graph TD
 ### Backtest Phase Agent
 
 #### 5. Backtest Agent
-- **Location**: [`agents/backtest/`](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/agents/backtest/)
-- **SKILL**: [SKILL.md](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/agents/backtest/SKILL.md)
+- **Location**: [`agents/backtest/`](agents/backtest/)
+- **SKILL**: [SKILL.md](agents/backtest/SKILL.md)
 - **Purpose**: Validate trade strategies through rigorous historical testing
 - **Critical Documents**:
-  - [README.md](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/agents/backtest/README.md) - Backtesting best practices
-  - [OVEROPTIMIZE_WARNING.md](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/agents/backtest/OVEROPTIMIZE_WARNING.md) - Overfitting prevention
-  - [BLACKSWANS.md](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/agents/backtest/BLACKSWANS.md) - Black swan resilience requirements
+  - [README.md](agents/backtest/README.md) - Backtesting best practices
+  - [OVEROPTIMIZE_WARNING.md](agents/backtest/OVEROPTIMIZE_WARNING.md) - Overfitting prevention
+  - [BLACKSWANS.md](agents/backtest/BLACKSWANS.md) - Black swan resilience requirements
 - **Validation Requirements**:
   - Out-of-sample testing (minimum 30% of data)
   - Walk-forward analysis
@@ -120,8 +120,8 @@ graph TD
 ### Implementation Phase Agents
 
 #### 6. Alpaca API Agent (Paper Trading)
-- **Location**: [`agents/brokers/alpaca/`](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/agents/brokers/alpaca/)
-- **SKILL**: [SKILL.md](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/agents/brokers/alpaca/SKILL.md)
+- **Location**: [`agents/brokers/alpaca/`](agents/brokers/alpaca/)
+- **SKILL**: [SKILL.md](agents/brokers/alpaca/SKILL.md)
 - **Purpose**: **PAPER TRADING ONLY** - Test all order types before live execution
 - **Capabilities**:
   - Paper trading environment (no real money)
@@ -137,8 +137,8 @@ graph TD
 - **Usage**: Test strategies here before deploying to IBKR live trading
 
 #### 7. IBKR API Agent (Live Trading)
-- **Location**: [`agents/brokers/ibkr/`](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/agents/brokers/ibkr/)
-- **SKILL**: [SKILL.md](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/agents/brokers/ibkr/SKILL.md)
+- **Location**: [`agents/brokers/ibkr/`](agents/brokers/ibkr/)
+- **SKILL**: [SKILL.md](agents/brokers/ibkr/SKILL.md)
 - **Purpose**: **LIVE TRADING** - Execute real trades for stocks, options, futures
 - **Capabilities**:
   - Live trading with real money
@@ -159,8 +159,8 @@ graph TD
 - **Note**: Does NOT support crypto - use OKX for crypto trading (US endpoint: us.okx.com)
 
 #### 8. Portfolio Tracker Agent
-- **Location**: [`agents/portfolio_tracker/`](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/agents/portfolio_tracker/)
-- **SKILL**: [SKILL.md](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/agents/portfolio_tracker/SKILL.md)
+- **Location**: [`agents/portfolio_tracker/`](agents/portfolio_tracker/)
+- **SKILL**: [SKILL.md](agents/portfolio_tracker/SKILL.md)
 - **Purpose**: Dynamic risk policy management and portfolio health monitoring
 - **Risk Policies**:
   - **HIGH** (Aggressive Growth): 80/20 Growth/Preservation - Default stance
@@ -462,7 +462,7 @@ The Manager enforces quality standards across all phases.
 
 #### Backtest Phase QA
 
-**Validation Checklist** (see [Backtest/SKILL.md](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/agents/backtest/SKILL.md)):
+**Validation Checklist** (see [Backtest/SKILL.md](agents/backtest/SKILL.md)):
 - [ ] RESULTS.md complete with all required sections
 - [ ] Default parameters tested
 - [ ] Optimization performed (if applicable) with <100 combinations
@@ -658,11 +658,11 @@ graph TD
 - `data/backtests/test<N>/RESULTS.md` - Individual backtest documentation
 
 **Reference Documents**:
-- [Research/README.md](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/agents/research/strategy/README.md) - Research methodology
-- [Backtest/README.md](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/agents/backtest/README.md) - Backtesting standards
-- [OVEROPTIMIZE_WARNING.md](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/agents/backtest/OVEROPTIMIZE_WARNING.md) - Overfitting prevention
-- [BLACKSWANS.md](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/agents/backtest/BLACKSWANS.md) - Black swan preparation
-- [Portfolio Tracker/RISK_POLICY_FRAMEWORK.md](file:///C:/Users/rafae/Documents/PROJECTS/TradeBot/agents/portfolio_tracker/RISK_POLICY_FRAMEWORK.md) - Risk policy comparison
+- [Research/README.md](agents/research/strategy/README.md) - Research methodology
+- [Backtest/README.md](agents/backtest/README.md) - Backtesting standards
+- [OVEROPTIMIZE_WARNING.md](agents/backtest/OVEROPTIMIZE_WARNING.md) - Overfitting prevention
+- [BLACKSWANS.md](agents/backtest/BLACKSWANS.md) - Black swan preparation
+- [Portfolio Tracker/RISK_POLICY_FRAMEWORK.md](agents/portfolio_tracker/RISK_POLICY_FRAMEWORK.md) - Risk policy comparison
 
 ---
 
@@ -1031,18 +1031,18 @@ pub.close()
 
 | File | Purpose |
 |------|--------|
-| [database.py](file:///c:/Users/rafae/Documents/PROJECTS/TradeBot/agents/common/database.py) | Engine, session management, `get_db_session()` context manager |
-| [models.py](file:///c:/Users/rafae/Documents/PROJECTS/TradeBot/agents/common/models.py) | All 8 ORM table definitions |
-| [enums.py](file:///c:/Users/rafae/Documents/PROJECTS/TradeBot/agents/common/enums.py) | Shared enum types for all status/category columns |
-| [event_bus.py](file:///c:/Users/rafae/Documents/PROJECTS/TradeBot/agents/common/event_bus.py) | `EventPublisher`, `EventSubscriber`, and topic constants |
-| [proxy.py](file:///c:/Users/rafae/Documents/PROJECTS/TradeBot/agents/common/proxy.py) | XSUB/XPUB proxy (standalone or thread) |
-| [orchestrator.py](file:///c:/Users/rafae/Documents/PROJECTS/TradeBot/agents/manager/orchestrator.py) | Manager's polling loop with ZeroMQ instant wake-up |
+| [database.py](agents/common/database.py) | Engine, session management, `get_db_session()` context manager |
+| [models.py](agents/common/models.py) | All 8 ORM table definitions |
+| [enums.py](agents/common/enums.py) | Shared enum types for all status/category columns |
+| [event_bus.py](agents/common/event_bus.py) | `EventPublisher`, `EventSubscriber`, and topic constants |
+| [proxy.py](agents/common/proxy.py) | XSUB/XPUB proxy (standalone or thread) |
+| [orchestrator.py](agents/manager/orchestrator.py) | Manager's polling loop with ZeroMQ instant wake-up |
 
 ---
 
 ### Database Schema
 
-All tables are defined in [models.py](file:///c:/Users/rafae/Documents/PROJECTS/TradeBot/agents/common/models.py) and registered via SQLAlchemy's `DeclarativeBase`.
+All tables are defined in [models.py](agents/common/models.py) and registered via SQLAlchemy's `DeclarativeBase`.
 
 #### 1. `system_state` — Runtime Configuration
 
@@ -1220,7 +1220,7 @@ Every risk policy change is logged here for compliance and analysis.
 
 ### Shared Enums
 
-Defined in [enums.py](file:///c:/Users/rafae/Documents/PROJECTS/TradeBot/agents/common/enums.py). Used as both Python types and SQLAlchemy column types.
+Defined in [enums.py](agents/common/enums.py). Used as both Python types and SQLAlchemy column types.
 
 | Enum | Values | Used In |
 |------|--------|---------|
@@ -1239,7 +1239,7 @@ Defined in [enums.py](file:///c:/Users/rafae/Documents/PROJECTS/TradeBot/agents/
 
 ### Manager Orchestrator
 
-The Orchestrator ([orchestrator.py](file:///c:/Users/rafae/Documents/PROJECTS/TradeBot/agents/manager/orchestrator.py)) is the Manager's main loop. It polls the database and performs one complete sweep of all pending work.
+The Orchestrator ([orchestrator.py](agents/manager/orchestrator.py)) is the Manager's main loop. It polls the database and performs one complete sweep of all pending work.
 
 #### Running the Orchestrator
 
@@ -1278,7 +1278,7 @@ graph LR
 
 ### Common Manager Operations
 
-All database operations use the `get_db_session()` context manager from [database.py](file:///c:/Users/rafae/Documents/PROJECTS/TradeBot/agents/common/database.py):
+All database operations use the `get_db_session()` context manager from [database.py](agents/common/database.py):
 
 ```python
 from agents.common.database import get_db_session
@@ -1398,7 +1398,7 @@ with get_db_session() as s:
 
 ### Utility Scripts
 
-Located in [scripts/](file:///c:/Users/rafae/Documents/PROJECTS/TradeBot/scripts/):
+Located in [scripts/](scripts/):
 
 | Script | Purpose | Usage |
 |--------|---------|-------|
