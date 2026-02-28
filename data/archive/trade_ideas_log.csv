@@ -1,0 +1,2 @@
+ID,Name,Type,Asset_Class,Market_Outlook,Status,Priority,Date_Created,Last_Updated,Strategy_Logic_Summary,Expected_Win_Rate,Expected_Sharpe,Max_Drawdown,Backtest_Status,Notes,File_Link
+001,Short Iron Condor - Low VIX,Income,Options,Neutral/Low Volatility,Example,High,2026-02-02,2026-02-02,"Sell iron condors on SPY/QQQ/IWM when VIX<15 for 30-45 DTE, targeting 50% profit",70-75%,>1.0,15-20%,Not Started,Template example for future trade ideas,

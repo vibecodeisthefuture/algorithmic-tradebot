@@ -1,0 +1,9 @@
+# Alpaca Trading API Requirements
+
+# Official Alpaca Python SDK
+alpaca-py>=0.8.0
+
+# Additional dependencies (usually installed with alpaca-py)
+requests>=2.28.0
+websockets>=10.0
+pydantic>=1.10.0

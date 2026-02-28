@@ -1,0 +1,8 @@
+{
+    "peak_value": 100000.0,
+    "peak_date": "2026-01-01T00:00:00",
+    "last_updated": "2026-01-01T00:00:00",
+    "current_value": 100000.0,
+    "drawdown_pct": 0.0,
+    "notes": "Example portfolio health data - replace with actual values"
+}

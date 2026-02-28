@@ -1,0 +1,389 @@
+# TradeBot System Configuration
+# Central configuration file for all system-wide settings
+# Last Updated: 2026-02-03
+# Version: 1.0
+
+# ==============================================================================
+# TRADING CONFIGURATION
+# ==============================================================================
+
+trading:
+  # Default risk policy on system startup
+  default_risk_policy: HIGH  # Options: HIGH, MODERATE, LOW
+
+  # Circuit breaker settings
+  circuit_breaker:
+    enabled: true
+    auto_activate: false  # Requires Manager approval
+
+  # Paper trading duration before live deployment
+  paper_trading_duration_days: 60  # Minimum 30, recommended 60
+
+  # Live trading capital allocation strategy
+  live_trading:
+    initial_allocation_pct: 10  # Start with 10-25% of intended capital
+    scaling_strategy: gradual  # Options: gradual, immediate, performance-based
+    max_allocation_pct: 30  # Maximum per strategy
+
+  # Order execution
+  execution:
+    default_order_type: market  # Options: market, limit
+    limit_order_offset_pct: 0.1  # For limit orders, % offset from current price
+    max_slippage_tolerance_pct: 0.5  # Reject if slippage exceeds this
+    retry_failed_orders: true
+    max_retries: 3
+
+# ==============================================================================
+# DATA CONFIGURATION
+# ==============================================================================
+
+data:
+  # Blackboard database (SQLite)
+  database:
+    path: "data/tradebot.db"
+    journal_mode: "WAL"
+    timeout_seconds: 30
+
+  # Primary data sources
+  crypto:
+    primary_source: coingecko  # Options: coingecko, coinbase, hyperliquid
+    fallback_source: coinbase
+    update_frequency_hours: 6
+
+  stocks:
+    primary_source: alpaca  # Options: alpaca, yfinance
+    fallback_source: yfinance
+    update_frequency_hours: 24  # Daily EOD updates
+
+  vix:
+    primary_source: yfinance
+    fallback_value: 20.0  # Conservative default if unavailable
+    cache_duration_minutes: 60
+
+  # Historical data collection
+  collection:
+    crypto_timeframe: 6h  # 6-hour candles
+    crypto_lookback_weeks: 500
+    stocks_timeframe: 1d  # Daily candles
+    stocks_lookback_weeks: 1000
+
+  # Data validation
+  validation:
+    require_minimum_data_points: 100
+    reject_incomplete_data: true
+    max_missing_data_pct: 5  # Reject if >5% data missing
+
+# ==============================================================================
+# NOTIFICATION CONFIGURATION
+# ==============================================================================
+
+notifications:
+  # Manager alert settings (AI Manager is always active, but logs alerts)
+  manager_alerts:
+    enabled: true
+    log_all_alerts: true
+    alert_log_path: "data/logs/alerts_log.csv"
+
+  # Circuit breaker notifications
+  circuit_breaker_alerts:
+    enabled: true
+    urgency: CRITICAL
+
+  # Policy switch notifications
+  policy_switch_alerts:
+    enabled: true
+    urgency: URGENT
+
+  # Performance alerts
+  performance_alerts:
+    enabled: true
+    strategy_underperformance_threshold_pct: -30  # Alert if 30% below backtest
+    portfolio_drawdown_warning_pct: 15  # Alert at 15% drawdown
+
+  # External notifications (optional - for human oversight)
+  external:
+    email_enabled: false  # Set true to enable email notifications
+    email_address: ""
+    sms_enabled: false
+    sms_number: ""
+    slack_enabled: false
+    slack_webhook_url: ""
+
+# ==============================================================================
+# RISK MANAGEMENT
+# ==============================================================================
+
+risk:
+  # Global risk limits (applied across all policies)
+  global:
+    max_portfolio_leverage: 3.0
+    max_single_asset_concentration: 0.30  # 30%
+    max_sector_concentration: 0.50  # 50%
+    max_correlated_positions: 5  # Max positions with correlation >0.70
+
+  # VIX-based adjustments
+  vix_based_sizing:
+    enabled: true
+    use_volatility_multipliers: true  # From RISK_POLICY_FRAMEWORK.md
+
+  # Drawdown monitoring
+  drawdown:
+    monitor_frequency_minutes: 60  # Check every hour
+    peak_value_update_frequency_hours: 24  # Daily peak recalculation
+
+  # Stop-loss requirements
+  stop_loss:
+    mandatory_for_high_risk: true  # Risk level ≥5 requires stop-loss
+    default_stock_stop_pct: -10
+    default_crypto_stop_pct: -20  # Wider for volatility
+    trailing_stop_enabled: false  # Set true for trailing stops
+
+# ==============================================================================
+# BACKTEST CONFIGURATION
+# ==============================================================================
+
+backtest:
+  # Validation thresholds
+  validation:
+    min_sharpe_ratio: 1.0
+    max_drawdown_pct: 15
+    min_trades: 100
+    min_win_rate_pct: 40
+    min_profit_factor: 1.2
+
+  # Test requirements
+  requirements:
+    out_of_sample_pct: 30  # Minimum 30% OOS data
+    walk_forward_windows: 5  # Minimum 5 WF periods
+    require_black_swan_tests: true
+    require_regime_tests: true  # Bull/bear/sideways
+
+  # Data sources
+  data_directory: "data/datasets/"
+  results_directory: "data/backtests/"
+
+  # Transaction costs
+  costs:
+    stock_commission: 0.0  # Alpaca is commission-free
+    crypto_commission: 0.0
+    slippage_model: realistic  # Options: none, realistic, conservative
+    realistic_slippage_bps: 5  # 5 basis points
+    conservative_slippage_bps: 10
+
+# ==============================================================================
+# ANALYTICS CONFIGURATION
+# ==============================================================================
+
+analytics:
+  # Report generation
+  reports:
+    monthly_reports_enabled: true
+    monthly_report_path: "analytics_reports/monthly/"
+    weekly_summary_enabled: true
+    daily_summary_enabled: false  # Set true for daily reports
+
+  # Performance tracking
+  tracking:
+    benchmark: "SPY"  # S&P 500 ETF
+    track_individual_strategies: true
+    track_portfolio_aggregate: true
+
+  # Metrics calculation
+  metrics:
+    rolling_window_days: 30  # For rolling Sharpe, etc.
+    min_data_points_for_metrics: 30
+    calculate_beta: true
+    calculate_alpha: true
+
+  # Data retention
+  retention:
+    keep_daily_snapshots_days: 90
+    keep_monthly_summaries_years: 10
+    archive_old_data: true
+
+# ==============================================================================
+# LOGGING CONFIGURATION
+# ==============================================================================
+
+logging:
+  # Log levels: DEBUG, INFO, WARNING, ERROR, CRITICAL
+  level: INFO
+
+  # Log destinations
+  console_output: true
+  file_output: true
+  log_directory: "logs/"
+
+  # Log rotation
+  rotation:
+    max_file_size_mb: 50
+    max_backup_files: 10
+    rotate_on_startup: false
+
+  # Component-specific logging
+  components:
+    manager: INFO
+    portfolio_tracker: INFO
+    research: INFO
+    backtest: DEBUG  # More verbose for backtest debugging
+    alpaca_api: WARNING  # Less noise from API
+    analytics: INFO
+
+# ==============================================================================
+# SYSTEM MAINTENANCE
+# ==============================================================================
+
+maintenance:
+  # Automatic cleanup
+  cleanup:
+    enabled: true
+    cleanup_frequency_days: 7
+    delete_old_logs_days: 90
+    delete_old_temp_files_days: 30
+    archive_old_backtests_days: 365
+
+  # Data integrity checks
+  integrity:
+    check_csv_schemas: true
+    check_frequency_days: 7
+    repair_corrupt_data: false  # Manual review recommended
+    backup_before_repair: true
+
+  # Performance optimization
+  optimization:
+    cache_frequently_used_data: true
+    cache_size_mb: 500
+    prune_cache_frequency_hours: 24
+
+# ==============================================================================
+# DEVELOPMENT / DEBUGGING
+# ==============================================================================
+
+development:
+  # Debug mode
+  debug_mode: false  # Set true for verbose debugging
+
+  # Testing
+  use_paper_trading_default: true  # Always default to paper for safety
+  mock_external_apis: false  # Set true for offline testing
+
+  # Performance profiling
+  profile_performance: false
+  profile_output_directory: "dev/profiles/"
+
+  # Feature flags
+  features:
+    enable_ml_predictions: false  # Future: ML-based strategy suggestions
+    enable_whale_tracking: true  # Crypto Liquidation Agent: whale monitoring
+    enable_automated_research: true  # Crypto Pattern Research: live pattern scanning
+
+# ==============================================================================
+# API CREDENTIALS (Reference Only - Use Environment Variables)
+# ==============================================================================
+
+# IMPORTANT: DO NOT store actual API keys here!
+# Set these as environment variables:
+#   - ALPACA_API_KEY, ALPACA_API_SECRET (paper trading)
+#   - IBKR_USERNAME, IBKR_PASSWORD (live trading - browser auth)
+#   - OKX_API_KEY, OKX_SECRET_KEY, OKX_PASSPHRASE (crypto trading)
+#   - COINGLASS_API_KEY (crypto liquidation data - paid, optional)
+
+# ==============================================================================
+# BROKER CONFIGURATION
+# ==============================================================================
+
+brokers:
+  # Paper trading broker - for testing ALL order types before live execution
+  paper:
+    provider: alpaca
+    mode: paper
+    base_url: "https://paper-api.alpaca.markets"
+    # Used for: Testing strategies, validating orders, paper trading
+
+  # Live trading broker - for stocks, options, futures (NOT crypto)
+  live:
+    provider: ibkr
+    mode: live
+    gateway_url: "https://localhost:5000"
+    session_refresh_seconds: 180  # 3 minutes (sessions timeout at 10-15 min)
+    ssl_verify: false  # Self-signed certificate
+    # Authentication: Manual browser login required at https://localhost:5000
+    # Used for: Real money trading of stocks, options, futures
+
+  # Crypto trading broker - for live crypto trading (US endpoint)
+  crypto:
+    provider: okx
+    mode: live
+    enabled: true
+    base_url: "https://us.okx.com"
+    # Credentials: OKX_API_KEY, OKX_SECRET_KEY, OKX_PASSPHRASE (env vars)
+    # Used for: Real crypto trading (BTC, ETH, etc.)
+
+  # Crypto data streaming — for liquidation + whale monitoring
+  crypto_data:
+    provider: hyperliquid
+    mode: data_only  # No trading, public data streams only
+    enabled: true
+    ws_url: "wss://api.hyperliquid.xyz/ws"
+    rest_url: "https://api.hyperliquid.xyz"
+    # Used for: Liquidation proxy detection, whale trade monitoring,
+    #           funding rates, open interest
+    # No API key required for public data
+
+  # Supplemental liquidation data (paid, optional)
+  coinglass:
+    provider: coinglass
+    mode: data_only
+    enabled: false  # Set to true + add API key to activate
+    rest_url: "https://open-api-v3.coinglass.com/api"
+    # Credentials: COINGLASS_API_KEY (env var)
+    # Plans: Hobbyist $29/mo — https://coinglass.com/pricing
+
+api:
+  alpaca:
+    base_url: "https://paper-api.alpaca.markets"
+    # NOTE: Paper trading only - for testing orders
+
+  ibkr:
+    gateway_url: "https://localhost:5000/v1/api"
+    session_timeout_minutes: 15
+    tickle_interval_seconds: 180
+    # NOTE: Live trading - requires gateway + browser authentication
+
+  coingecko:
+    api_url: "https://api.coingecko.com/api/v3"
+    rate_limit_per_minute: 50
+
+  yfinance:
+    # No API key required
+    rate_limit_per_minute: 2000
+
+# ==============================================================================
+# PATHS (Auto-detected from project root)
+# ==============================================================================
+
+paths:
+  project_root: "."
+  manager: "agents/manager/"
+  research: "agents/research/strategy/"
+  market_news: "agents/research/market_news/"
+  analytics: "agents/analytics/"
+  backtest: "agents/backtest/"
+  brokers: "agents/brokers/"
+  alpaca_api: "agents/brokers/alpaca/"
+  ibkr_api: "agents/brokers/ibkr/"
+  okx_api: "agents/brokers/okx/"
+  crypto_liquidation: "agents/research/crypto_liquidation/"
+  crypto_pattern_research: "agents/research/strategy/crypto_strategy_generator.py"
+  portfolio_tracker: "agents/portfolio_tracker/"
+  data: "data/"
+  logs: "data/logs/"
+  datasets: "data/datasets/"
+  backtests: "data/backtests/"
+  state: "data/state/"
+  docs: "docs/"
+  config: "config/"
+
+# ==============================================================================
+# END OF CONFIGURATION
+# ==============================================================================

@@ -1,0 +1,2 @@
+timestamp,orderID,assetType,tickerSymbol,action,orderType,timeInForce,quantity,notional,limitPrice,stopPrice,avgFillPrice,filledQty,orderValue,status,commission
+2026-01-01T00:00:00.000000,example-order-id,Stock,AAPL,buy,market,gtc,10,,,,150.00,10,1500.0,filled,1.0
