@@ -34,6 +34,8 @@ from agents.common.enums import (
     EventType,
     EventUrgency,
     PolicyTrigger,
+    PredictionSignal,
+    MarketRegime,
 )
 
 
@@ -398,3 +400,66 @@ class CryptoLiquidationSummary(Base):
 
     def __repr__(self):
         return f"<LiqSummary {self.symbol} {self.hour} liqs={self.liq_count} whales={self.whale_count}>"
+
+
+# ---------------------------------------------------------------------------
+# predictions — Predictions Agent forecast signals (one row per asset per cycle)
+# ---------------------------------------------------------------------------
+
+
+class Prediction(Base):
+    """
+    Output table for the Predictions Agent.
+
+    Written by output_writer.py after the ensemble layer produces a
+    confidence-weighted signal. Only rows with confidence >= 0.6 are written
+    (low-confidence signals are discarded to minimise DB bloat).
+
+    DB footprint rules enforced here:
+      - One row per asset per cycle (ensemble output only; no per-model rows)
+      - model_breakdown stores compact JSON summaries, never raw arrays
+      - Rows older than 90 days are pruned by run_predictions.py
+      - Model weights live on disk at data/state/model_weights/, never in DB
+
+    Consumers:
+      - Strategy Agent — uses signal + confidence as entry filter
+      - Portfolio Tracker — uses confidence + regime for position sizing
+      - Analytics Agent — tracks per-model accuracy via model_breakdown
+    """
+
+    __tablename__ = "predictions"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+
+    # The candle timestamp this signal applies to (NOT the time of creation)
+    timestamp = Column(DateTime, nullable=False, index=True)
+
+    # Asset identifier matching TradeBot conventions: "BTC/USD", "AAPL", etc.
+    asset = Column(String, nullable=False, index=True)
+
+    # Final ensemble decision
+    signal = Column(SAEnum(PredictionSignal), nullable=False)
+
+    # Ensemble confidence 0.0–1.0; rows below 0.6 are never written
+    confidence = Column(Float, nullable=False)
+
+    # Number of candles ahead this signal covers (default: 14)
+    forecast_horizon = Column(Integer, nullable=False, default=14)
+
+    # HMM regime label at time of forecast — determines which models were active
+    regime = Column(SAEnum(MarketRegime), nullable=True)
+
+    # Compact per-model summaries packed into a single JSON column.
+    # Shape: {"monte_carlo": {"p05": ..., "p50": ..., "signal": ..., "weight": ...},
+    #         "lgbm": {"prob_up": ..., "signal": ..., "weight": ...}, ...}
+    # Never store raw simulation paths or full forecast series here.
+    model_breakdown = Column(JSON, nullable=True)
+
+    created_at = Column(DateTime, default=_utcnow)
+
+    def __repr__(self):
+        return (
+            f"<Prediction {self.asset} {self.signal.value} "
+            f"conf={self.confidence:.2f} regime={self.regime} "
+            f"@{self.timestamp}>"
+        )

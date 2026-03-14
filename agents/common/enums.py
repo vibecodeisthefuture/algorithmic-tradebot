@@ -93,6 +93,39 @@ class BrokerName(str, enum.Enum):
 
 
 # ---------------------------------------------------------------------------
+# Predictions Agent — Signal & Regime Contracts
+# ---------------------------------------------------------------------------
+
+
+class PredictionSignal(str, enum.Enum):
+    """
+    Directional signal emitted by the Predictions Agent ensemble.
+
+    Consumers (Strategy Agent, Portfolio Tracker) should only act on
+    signals accompanied by ensemble confidence >= 0.6.
+    """
+
+    BUY = "BUY"
+    SELL = "SELL"
+    HOLD = "HOLD"
+
+
+class MarketRegime(str, enum.Enum):
+    """
+    Market regime label produced by the HMM Regime Detector.
+
+    The regime gates which forecasting models are activated each cycle:
+      BULL    → LightGBM, LSTM, Prophet active; ARIMA suppressed
+      BEAR    → ARIMA, Monte Carlo active; LightGBM/Prophet suppressed
+      NEUTRAL → all models active; ensemble weights equal
+    """
+
+    BULL = "BULL"
+    NEUTRAL = "NEUTRAL"
+    BEAR = "BEAR"
+
+
+# ---------------------------------------------------------------------------
 # Inter-Agent Events
 # ---------------------------------------------------------------------------
 
@@ -112,6 +145,8 @@ class EventType(str, enum.Enum):
     NEWS_CRITICAL = "NEWS_CRITICAL"
     LIQUIDATION_CASCADE = "LIQUIDATION_CASCADE"
     WHALE_CLUSTER = "WHALE_CLUSTER"
+    PREDICTION_SIGNAL = "PREDICTION_SIGNAL"   # Predictions Agent high-confidence signal
+    MODEL_ACCURACY_WARNING = "MODEL_ACCURACY_WARNING"  # Model rolling accuracy < 52%
 
 
 class EventUrgency(str, enum.Enum):
