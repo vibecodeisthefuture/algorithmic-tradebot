@@ -2,6 +2,11 @@
 
 > Autonomous, multi-agent trading system built on the **RBI (Research → Backtest → Implement)** pipeline. Agents operate independently, communicate through a shared SQLite blackboard, and are governed by a risk-policy framework that spans four tiers from conservative to aggressive.
 
+> [!NOTE]
+> **Development is temporarily paused on TradeBot (as of 2026-03-13).** Active focus has shifted to **[AugurSight](https://github.com/vibecodeisthefuture/augursight)** — a companion system for autonomous prediction market trading (Polymarket, Kalshi). AugurSight targets a lower barrier to initial alpha and will stress-test the shared homelab infrastructure before TradeBot goes live. The long-term plan is to integrate AugurSight as a subsidiary prediction market module within TradeBot's portfolio, with TradeBot's Manager Agent acting as the parent orchestrator across both systems. TradeBot resumes when AugurSight reaches stable production.
+
+
+
 ---
 
 ## Architecture
